@@ -13,7 +13,7 @@ Initial game
 
 ![initial game](img/initial.png)
 
-100 games later ...
+About 100 games later ...
 
 ![later game](img/later.png)
 
