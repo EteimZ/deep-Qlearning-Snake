@@ -1,3 +1,4 @@
+from typing import final
 import torch
 import random
 import numpy as np
@@ -16,7 +17,7 @@ class Agent:
     def __init__(self):
         self.n_games = 0
         self.epsilon = 0 # randomness
-        self.gamma = 0.9 # discount rate
+        self.gamma = 0.7 # discount rate
         self.memory = deque(maxlen=MAX_MEMORY) # popleft()
         self.model = Linear_QNet(11, 256, 3)
         self.trainer = QTrainer(self.model, lr=LR, gamma=self.gamma)
@@ -121,7 +122,7 @@ def train():
 
         # perform move and get new state
         reward, done, score = game.play_step(final_move)
-        
+
         state_new = agent.get_state(game)
 
         # train short memory
@@ -148,7 +149,6 @@ def train():
             mean_score = total_score / agent.n_games
             plot_mean_scores.append(mean_score)
             plot(plot_scores, plot_mean_scores)
-            
 
 if __name__ == '__main__':
     train()
